@@ -3,8 +3,12 @@ import os
 import time
 
 import numpy as np
-import torch
 from pandas import DataFrame
+
+try:
+    import torch
+except ImportError:
+    torch = None
 
 from ..visualization import draw_line_chart
 
@@ -56,7 +60,7 @@ def check_results(x, y):
 
     if isinstance(x, np.ndarray):
         return np.allclose(x, y)
-    if isinstance(x, torch.Tensor):
+    if torch is not None and isinstance(x, torch.Tensor):
         return torch.allclose(x, y)
     if isinstance(x, float):
         return np.isclose(x, y)
@@ -88,10 +92,16 @@ def speed_benchmark(
     if not isinstance(args["data"], dict):
         args["data"] = {d[args["main_arg_name"]]: d for d in args["data"]}
 
-    if pre_func is None:
-        pre_func = torch.cuda.synchronize
-    if post_func is None:
-        post_func = torch.cuda.synchronize
+    if torch is not None:
+        if pre_func is None:
+            pre_func = torch.cuda.synchronize
+        if post_func is None:
+            post_func = torch.cuda.synchronize
+    else:
+        if pre_func is None:
+            pre_func = lambda: None
+        if post_func is None:
+            post_func = lambda: None
 
     if check_result and check_result_func is None:
         check_result_func = check_results

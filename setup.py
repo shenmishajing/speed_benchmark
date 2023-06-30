@@ -20,6 +20,7 @@ setup(
     },
     python_requires=">=3.8",
     install_requires=[
+        "numpy",
         "pandas",
         "matplotlib",
     ],
