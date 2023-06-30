@@ -10,7 +10,7 @@ try:
 except ImportError:
     torch = None
 
-from ..visualization import draw_line_chart
+from .visualization import draw_line_chart
 
 
 def visualize_speed_benchmark_res(result, output_path, main_arg_name, save_table):
@@ -92,6 +92,14 @@ def speed_benchmark(
     if not isinstance(args["data"], dict):
         args["data"] = {d[args["main_arg_name"]]: d for d in args["data"]}
 
+    for k in args["data"]:
+        if isinstance(args["data"][k], tuple | list):
+            args["data"][k] = {"args": args["data"][k]}
+        elif isinstance(args["data"][k], dict) and (
+            "kwargs" not in args["data"][k] and "args" not in args["data"][k]
+        ):
+            args["data"][k] = {"kwargs": args["data"][k]}
+
     if torch is not None:
         if pre_func is None:
             pre_func = torch.cuda.synchronize
@@ -119,13 +127,13 @@ def speed_benchmark(
             cur_res = result[main_arg][func_name]
 
             for _ in range(warmup):
-                func(**data)
+                func(*data.get("args", ()), **data.get("kwargs", {}))
 
             for _ in range(repeat):
                 pre_func()
                 duration = time.perf_counter()
                 for _ in range(num):
-                    func_res = func(**data)
+                    func_res = func(*data.get("args", ()), **data.get("kwargs", {}))
                 post_func()
                 duration = time.perf_counter() - duration
                 duration /= num
