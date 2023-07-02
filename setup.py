@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="speed-benchmark",
-    version="1.0.2",
+    version="1.0.3",
     description="A generic speed benchmark library.",
     long_description=long_description,
     long_description_content_type="text/markdown",
