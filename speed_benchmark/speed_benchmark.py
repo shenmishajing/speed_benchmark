@@ -86,7 +86,7 @@ def speed_benchmark(
 ):
     if isinstance(funcs, list):
         funcs = {f.__name__: f for f in funcs}
-    elif isinstance(funcs, dict):
+    elif not isinstance(funcs, dict):
         funcs = {funcs.__name__: funcs}
 
     if not isinstance(args["data"], dict):
