@@ -20,7 +20,7 @@ def draw_line_chart(
         upper_data = data + std_data
         lower_data = data - std_data
 
-    colors = ncolors(len(data))
+    colors = ncolors(len(list(data)))
 
     for i, name in enumerate(data):
         plt.plot(data.index, data[name], color=colors[i], label=name, linewidth=3.5)
