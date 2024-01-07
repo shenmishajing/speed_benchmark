@@ -106,10 +106,14 @@ def speed_benchmark(
         if post_func is None:
             post_func = torch.cuda.synchronize
     else:
+
+        def no_op():
+            pass
+
         if pre_func is None:
-            pre_func = lambda: None
+            pre_func = no_op
         if post_func is None:
-            post_func = lambda: None
+            post_func = no_op
 
     if check_result and check_result_func is None:
         check_result_func = check_results
