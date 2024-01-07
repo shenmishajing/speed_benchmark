@@ -52,7 +52,9 @@ def check_results(x, y):
         return False
 
     if isinstance(x, tuple | list):
-        return all([check_results(x[i], y[i]) for i in range(len(x))])
+        return len(x) == len(y) and all(
+            [check_results(x[i], y[i]) for i in range(len(x))]
+        )
     if isinstance(x, dict):
         if set(x.keys()) != set(y.keys()):
             return False
