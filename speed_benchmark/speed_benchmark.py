@@ -51,7 +51,7 @@ def check_results(x, y):
     if type(x) != type(y):
         return False
 
-    if isinstance(x, tuple | list):
+    if isinstance(x, (tuple, list)):
         return len(x) == len(y) and all(
             [check_results(x[i], y[i]) for i in range(len(x))]
         )
