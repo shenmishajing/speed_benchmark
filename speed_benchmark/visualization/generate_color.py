@@ -5,11 +5,10 @@ import random
 def get_n_hls_colors(num):
     hls_colors = []
     for i in range(num):
-        h = i / num
-        s = 0.9 + random.random() * 0.1
-        l = 0.5 + random.random() * 0.1
-        hls_colors.append([h, l, s])
-
+        h_item = i / num
+        s_item = 0.9 + random.random() * 0.1
+        l_item = 0.5 + random.random() * 0.1
+        hls_colors.append([h_item, l_item, s_item])
     return hls_colors
 
 
