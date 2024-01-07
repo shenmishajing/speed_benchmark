@@ -1,13 +1,13 @@
-# Shell Command Launcher
+# Speed Benchmark
 
-A simple tool to launch shell command many times.
+A generic speed benchmark library. It runs every function with every arg to get the average time cost and also checks the result.
 
 ````{grid} 2
 :gutter: 3
 
   ```{grid-item-card} Installation Guides
 
-  Get started by installing Shell Command Launcher.
+  Get started by installing Speed Benchmark.
 
   +++
 
@@ -22,7 +22,7 @@ A simple tool to launch shell command many times.
 
   ```{grid-item-card} Usage Guides
 
-  Details of the core features provide by Shell Command Launcher.
+  Details of the core features provide by Speed Benchmark.
 
   +++
 
@@ -37,11 +37,11 @@ A simple tool to launch shell command many times.
 
   ```{grid-item-card} API Reference Guides
 
-  References of the API provided by Shell Command Launcher.
+  References of the API provided by Speed Benchmark.
 
   +++
 
-    ```{button-ref} autoapi/shell_command_launcher/index
+    ```{button-ref} autoapi/speed_benchmark/index
     :expand:
     :color: secondary
     :click-parent:
@@ -52,7 +52,7 @@ A simple tool to launch shell command many times.
 
   ```{grid-item-card} Contribution Guides
 
-  Helpful instruction to develop Shell Command Launcher.
+  Helpful instruction to develop Speed Benchmark.
 
   +++
 
@@ -80,5 +80,5 @@ get_started/changelog
 :hidden:
 :caption: API References
 
-autoapi/shell_command_launcher/index
+autoapi/speed_benchmark/index
 ```
